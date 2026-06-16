@@ -8,6 +8,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#F59E0B">
 <style>
 :root{
   --primary:#F59E0B;--primary-hover:#D97706;--primary-muted:#FEF3C7;
@@ -186,6 +190,9 @@ section{padding:110px 0}
 footer{background:#111827;color:#9CA3AF;padding:48px 0;text-align:center;font-size:.9rem}
 footer .logo{color:#fff;margin-bottom:.6rem}
 footer a{color:#D1D5DB}
+.foot-links{display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap;margin-top:1.4rem}
+.foot-links a{display:inline-flex;align-items:center;gap:.45rem;padding:.55rem 1.05rem;border:1px solid rgba(255,255,255,.16);border-radius:var(--radius-full);color:#E5E7EB;font-size:.88rem;font-weight:500;transition:border-color .2s,background .2s,color .2s}
+.foot-links a:hover{border-color:var(--primary);background:rgba(245,158,11,.14);color:#fff}
 .flag{position:fixed;bottom:14px;left:14px;background:#0F766E;color:#fff;padding:.4rem .8rem;border-radius:var(--radius-full);font-size:.75rem;z-index:99;opacity:.9}
 .imgnote{text-align:center;font-size:.78rem;color:var(--text-muted);margin-top:1.5rem;font-style:italic}
 @media (prefers-reduced-motion: reduce){
@@ -317,7 +324,7 @@ footer a{color:#D1D5DB}
       <span class="badge">Produit maison</span>
       <h3><span class="poste">Posté !</span> alimente tes réseaux sociaux, sans y passer de temps</h3>
       <p>À partir de tes vraies photos, <span class="poste">Posté !</span> écrit tes publications, tu valides en un clic, ça publie tout seul.</p>
-      <br><a href="https://tidycal.com/ultrafacile/15-min-pour-voir-si-poste-est-fait-pour-toi" target="_blank" rel="noopener" class="btn magnetic">Découvrir Posté !</a>
+      <br><a href="https://poste.ultrafacile.fr" target="_blank" rel="noopener" class="btn magnetic">Découvrir Posté !</a>
     </div>
   </div>
 </section>
@@ -363,7 +370,12 @@ footer a{color:#D1D5DB}
   <div class="wrap">
     <div class="logo">ULTRA<span style="color:var(--primary)">FACILE</span></div>
     <p>J'enlève de tes épaules tout ce qui peut tourner sans toi.</p>
-    <p style="margin-top:1rem"><a href="https://tidycal.com/ultrafacile/echange-gratuit" target="_blank" rel="noopener">Échange gratuit</a> · <a href="https://tidycal.com/ultrafacile/15-min-pour-voir-si-poste-est-fait-pour-toi" target="_blank" rel="noopener">Posté !</a> ·<a href="https://wa.me/33646561787" target="_blank" rel="noopener">WhatsApp</a> · <a href="mailto:bonjour@ultrafacile.fr">bonjour@ultrafacile.fr</a></p>
+    <div class="foot-links">
+      <a href="https://tidycal.com/ultrafacile/echange-gratuit" target="_blank" rel="noopener">📅 Réserver un échange</a>
+      <a href="https://poste.ultrafacile.fr" target="_blank" rel="noopener">✨ Posté !</a>
+      <a href="https://wa.me/33646561787" target="_blank" rel="noopener">💬 WhatsApp</a>
+      <a href="mailto:bonjour@ultrafacile.fr">✉️ bonjour@ultrafacile.fr</a>
+    </div>
     <p style="margin-top:.6rem;font-size:.8rem">ULTRAFACILE, SASU · Mentions légales [À REMPLIR]</p>
   </div>
 </footer>
