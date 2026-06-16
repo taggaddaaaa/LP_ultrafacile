@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ULTRAFACILE | Arrête de rater des clients pendant que tu bosses</title>
+<meta name="description" content="Les appels manqués, les messages sans réponse, les avis ignorés : on met en place ce qui s'en occupe à ta place. Pour artisans, commerçants et indépendants débordés. Premier échange gratuit.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#F59E0B;--primary-hover:#D97706;--primary-muted:#FEF3C7;
+  --bg:#FAFAFA;--surface:#FFFFFF;
+  --text:#1F2937;--text-2:#4B5563;--text-muted:#9CA3AF;
+  --border:#E5E7EB;--border-subtle:#F3F4F6;--success:#10B981;
+  --radius-lg:1rem;--radius-xl:1.5rem;--radius-full:9999px;
+  --shadow-sm:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.12);
+  --shadow-md:0 4px 6px rgba(0,0,0,.07),0 12px 20px rgba(0,0,0,.04);
+  --shadow-lg:0 8px 30px rgba(0,0,0,.12),0 20px 40px rgba(0,0,0,.06);
+  --shadow-glow:0 0 30px rgba(245,158,11,.15),0 4px 20px rgba(0,0,0,.1);
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Outfit',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{line-height:1.12;letter-spacing:-.025em;font-weight:700}
+h2{font-size:2.5rem;font-weight:700;margin-bottom:1rem}
+h3{font-size:1.25rem;font-weight:600}
+p{color:var(--text-2)}
+.badge{display:inline-flex;align-items:center;padding:.4rem .9rem;background:var(--primary-muted);color:var(--primary-hover);border-radius:var(--radius-full);font-size:.8rem;font-weight:600;border:1px solid rgba(245,158,11,.2);margin-bottom:1.5rem}
+.btn{display:inline-block;background:linear-gradient(135deg,#F59E0B,#FBBF24);color:#fff;padding:.95rem 2rem;border-radius:var(--radius-lg);font-weight:600;font-size:1rem;transition:transform .25s var(--ease),box-shadow .25s;box-shadow:var(--shadow-sm);cursor:pointer;border:none;will-change:translate}
+.btn:hover{transform:translateY(-2px) scale(1.02);box-shadow:var(--shadow-glow)}
+.btn-ghost{background:none;color:var(--text-2);box-shadow:none;font-weight:500}
+.btn-ghost:hover{color:var(--primary-hover);box-shadow:none}
+.micro{font-size:.85rem;color:var(--text-muted);margin-top:.9rem}
+.reveal{opacity:0;transform:translateY(24px);filter:blur(3px);transition:opacity .55s var(--ease),transform .55s var(--ease),filter .55s}
+.reveal.visible{opacity:1;transform:none;filter:none}
+.stagger>*{opacity:0;transform:translateY(24px);filter:blur(3px);transition:opacity .55s var(--ease),transform .55s var(--ease),filter .55s}
+.stagger.visible>*{opacity:1;transform:none;filter:none}
+.stagger.visible>*:nth-child(2){transition-delay:.07s}
+.stagger.visible>*:nth-child(3){transition-delay:.14s}
+.stagger.visible>*:nth-child(4){transition-delay:.21s}
+.chaos>*{opacity:0;transform:translateY(26px) translateX(var(--cx,-12px)) rotate(var(--cr,-1.3deg));transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.chaos.visible>*{opacity:1;transform:none}
+.chaos>*:nth-child(odd){--cx:-12px;--cr:-1.3deg}
+.chaos>*:nth-child(even){--cx:12px;--cr:1.3deg}
+.chaos.visible>*:nth-child(2){transition-delay:.08s}
+.chaos.visible>*:nth-child(3){transition-delay:.16s}
+.chaos.visible>*:nth-child(4){transition-delay:.24s}
+nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.8);backdrop-filter:blur(16px);border-bottom:1px solid transparent;transition:all .3s}
+nav.scrolled{background:rgba(255,255,255,.95);border-bottom-color:var(--border-subtle);box-shadow:var(--shadow-sm)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:68px;transition:height .3s var(--ease)}
+nav.scrolled .nav-in{height:58px}
+.logo{font-weight:800;font-size:1.25rem;letter-spacing:-.03em}
+.logo span{color:var(--primary)}
+.nav-links{display:flex;gap:2rem;align-items:center}
+.nav-links a:not(.nav-cta){font-size:.92rem;color:var(--text-2);font-weight:500;position:relative}
+.nav-links a:not(.nav-cta)::after{content:'';position:absolute;left:0;bottom:-4px;width:100%;height:2px;background:var(--primary);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}
+.nav-links a:not(.nav-cta):hover{color:var(--text)}
+.nav-links a:not(.nav-cta):hover::after{transform:scaleX(1)}
+.nav-cta{background:linear-gradient(135deg,#F59E0B,#FBBF24);color:#fff!important;padding:.55rem 1.2rem;border-radius:var(--radius-lg);font-weight:600}
+@media(max-width:760px){.nav-links a:not(.nav-cta){display:none}}
+section{padding:110px 0}
+.hero{padding:130px 0 110px;position:relative;overflow:hidden;background:linear-gradient(135deg,#FAFAFA,#FEF3C7 30%,#FAFAFA 60%,#FEF3C7)}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);z-index:0;will-change:translate}
+.orb1{width:440px;height:440px;background:rgba(245,158,11,.18);top:-160px;right:-120px;animation:drift 14s ease-in-out infinite alternate}
+.orb2{width:320px;height:320px;background:rgba(251,191,36,.15);bottom:-140px;left:-120px;animation:drift 18s ease-in-out infinite alternate-reverse}
+@keyframes drift{to{transform:translate(40px,30px)}}
+.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.1fr .9fr;gap:3rem;align-items:center}
+@media(max-width:860px){.hero-grid{grid-template-columns:1fr;text-align:center}}
+.hero h1{font-size:3.5rem;margin-bottom:1.2rem}
+.hero-h1 .line{display:block;overflow:hidden;padding-bottom:.08em}
+.hero-h1 .line i{display:block;font-style:normal;transform:translateY(110%);transition:transform .7s var(--ease)}
+.hero-h1.in .line:nth-child(1) i{transform:none;transition-delay:.05s}
+.hero-h1.in .line:nth-child(2) i{transform:none;transition-delay:.18s}
+.hero .intro{opacity:0;transform:translateY(18px);transition:opacity .6s var(--ease) .35s,transform .6s var(--ease) .35s}
+.hero-h1.in ~ .intro{opacity:1;transform:none}
+.hero p.sub{font-size:1.22rem;color:var(--text-2);max-width:580px;margin-bottom:2rem}
+@media(max-width:860px){.hero p.sub{margin-left:auto;margin-right:auto}}
+.hero-cta{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+@media(max-width:860px){.hero-cta{justify-content:center}}
+@media(max-width:640px){.hero h1{font-size:2.3rem}.hero{padding:90px 0 70px}}
+.mockup-wrap{will-change:transform;transform-style:preserve-3d}
+.mockup{background:#fff;border-radius:var(--radius-xl);box-shadow:var(--shadow-lg);padding:1.2rem;animation:float 6s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.mockup .mhead{display:flex;align-items:center;gap:.5rem;margin-bottom:1rem}
+.mockup .dot{width:10px;height:10px;border-radius:50%;background:var(--border)}
+.mockup .row{display:flex;align-items:center;gap:.7rem;padding:.7rem;border-radius:.7rem;background:var(--bg);margin-bottom:.6rem;animation:rowpulse 7s ease-in-out infinite}
+.mockup .row:nth-of-type(1){animation-delay:0s}
+.mockup .row:nth-of-type(2){animation-delay:1.75s}
+.mockup .row:nth-of-type(3){animation-delay:3.5s}
+.mockup .row:nth-of-type(4){animation-delay:5.25s}
+@keyframes rowpulse{0%,12%,100%{background:var(--bg);box-shadow:inset 3px 0 0 rgba(245,158,11,0)}3%{background:#FFF7E6;box-shadow:inset 3px 0 0 var(--primary)}}
+.mockup .ic{width:34px;height:34px;border-radius:50%;background:var(--primary-muted);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.mockup .ln{flex:1}
+.mockup .ln b{display:block;font-size:.82rem;color:var(--text)}
+.mockup .ln small{font-size:.72rem;color:var(--text-muted)}
+.mockup .ok{color:var(--success);font-weight:700;animation:okpop 7s ease-in-out infinite}
+.mockup .row:nth-of-type(1) .ok{animation-delay:0s}
+.mockup .row:nth-of-type(2) .ok{animation-delay:1.75s}
+.mockup .row:nth-of-type(3) .ok{animation-delay:3.5s}
+.mockup .row:nth-of-type(4) .ok{animation-delay:5.25s}
+@keyframes okpop{0%,100%{transform:scale(1)}3%{transform:scale(1.35)}}
+.eyebrow{text-align:center}
+.lead{text-align:center;font-size:1.2rem;color:var(--text-2);max-width:680px;margin:0 auto 3rem}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+@media(max-width:760px){.grid{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--border-subtle);border-radius:var(--radius-xl);padding:2rem;box-shadow:var(--shadow-sm);transition:transform .3s var(--ease),box-shadow .3s,border-color .3s}
+.card:hover{transform:translateY(-6px);box-shadow:var(--shadow-md);border-color:var(--primary)}
+.card .scene{color:var(--text);font-size:1.05rem;margin-bottom:1rem}
+.card .sol{color:var(--primary-hover);font-weight:600;opacity:.55;transform:translateX(-6px);transition:opacity .3s var(--ease),transform .3s var(--ease)}
+.card:hover .sol{opacity:1;transform:none}
+.closing{text-align:center;margin-top:2.5rem;font-size:1.15rem;color:var(--text);font-weight:500;max-width:700px;margin-left:auto;margin-right:auto}
+.declic{background:var(--surface);position:relative;overflow:hidden}
+.declic-glow{position:absolute;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(245,158,11,.18),transparent 70%);filter:blur(20px);pointer-events:none;transform:translate(-50%,-50%);opacity:0;transition:opacity .4s;z-index:0;left:50%;top:50%}
+.declic .wrap{max-width:680px;text-align:center;position:relative;z-index:1}
+.declic .lines p{font-size:1.35rem;color:var(--text);margin:.2rem 0;font-weight:600}
+.declic .result{color:var(--text-2)!important;font-weight:400!important;margin:1.2rem 0!important;font-size:1.1rem!important}
+.projection{margin-top:2.4rem;padding-top:2.2rem;border-top:1px solid var(--border-subtle)}
+.signature{font-size:1.7rem;font-weight:700;background:linear-gradient(135deg,#F59E0B,#F97316);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin:0 0 1rem}
+.projection p{font-size:1.15rem;color:var(--text);margin:.3rem 0}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:1rem;position:relative}
+.flux{position:absolute;top:calc(1.8rem + 21px);left:16%;right:16%;height:2px;background:var(--border-subtle);overflow:hidden;z-index:0}
+.flux::before{content:'';position:absolute;inset:0;width:0;background:linear-gradient(90deg,#F59E0B,#FBBF24);transition:width 1.2s var(--ease) .15s}
+.steps.visible .flux::before{width:100%}
+@media(max-width:760px){.steps{grid-template-columns:1fr}.flux{display:none}}
+.step{padding:1.8rem;border-radius:var(--radius-xl);background:var(--surface);border:1px solid var(--border-subtle);box-shadow:var(--shadow-sm);position:relative;z-index:1}
+.step .n{width:42px;height:42px;border-radius:var(--radius-full);background:linear-gradient(135deg,#F59E0B,#FBBF24);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;margin-bottom:1rem;transform:scale(.55);opacity:0;transition:transform .5s var(--ease),opacity .5s}
+.steps.visible .step .n{transform:none;opacity:1}
+.steps.visible .step:nth-child(3) .n{transition-delay:.25s}
+.steps.visible .step:nth-child(4) .n{transition-delay:.5s}
+.step h3{margin-bottom:.5rem}
+.step .note{font-size:.85rem;color:var(--text-muted);margin-top:.6rem;font-style:italic}
+.preuve{background:var(--surface)}
+.cases{display:grid;grid-template-columns:repeat(2,1fr);gap:1.8rem;margin-top:1rem}
+@media(max-width:760px){.cases{grid-template-columns:1fr}}
+.case{background:var(--bg);border:1px solid var(--border-subtle);border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-sm);transition:transform .3s var(--ease),box-shadow .3s}
+.case:hover{transform:translateY(-6px);box-shadow:var(--shadow-md)}
+.case .img{height:170px;background-size:cover;background-position:center;position:relative}
+.case .img::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent,rgba(0,0,0,.15))}
+.case .body{padding:1.6rem}
+.case .sect{font-size:.78rem;font-weight:600;color:var(--primary-hover);text-transform:uppercase;letter-spacing:.04em}
+.case h3{margin:.4rem 0 .7rem;font-size:1.15rem}
+.case p{font-size:.95rem}
+.case .res{margin-top:.9rem;display:inline-block;background:rgba(16,185,129,.1);color:var(--success);font-weight:600;font-size:.9rem;padding:.45rem .8rem;border-radius:var(--radius-full)}
+.testi{max-width:720px;margin:2.5rem auto 0;background:var(--surface);border:1px solid var(--border-subtle);border-left:4px solid var(--primary);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow-sm)}
+.testi blockquote{font-size:1.3rem;color:var(--text);font-weight:600;line-height:1.45}
+.testi .who{display:flex;align-items:center;gap:.8rem;margin-top:1.2rem}
+.testi .av{width:46px;height:46px;border-radius:50%;object-fit:cover;border:2px solid var(--primary-muted);flex-shrink:0}
+.testi .who b{font-size:.92rem;color:var(--text)}
+.testi .who small{display:block;color:var(--text-muted);font-size:.82rem}
+.testi .exnote{font-size:.74rem;color:var(--text-muted);font-style:italic;margin-top:.9rem}
+.poste-band{margin-top:2.5rem;background:linear-gradient(135deg,#FEF3C7,#FFF);border:1px solid rgba(245,158,11,.25);border-radius:var(--radius-xl);padding:2.5rem;text-align:center;transition:transform .3s var(--ease),box-shadow .3s}
+.poste-band:hover{transform:translateY(-4px);box-shadow:var(--shadow-glow)}
+.poste-band h3{font-size:1.6rem;margin-bottom:.6rem}
+.poste{font-weight:700;color:var(--primary-hover);white-space:nowrap}
+.poste-band p{max-width:560px;margin:.3rem auto}
+.qui{background:var(--bg)}
+.qui .wrap{max-width:760px;text-align:center}
+.qui p{font-size:1.18rem;margin:.7rem 0}
+.qui .photo{display:block;margin:2rem auto 0;width:150px;height:150px;border-radius:50%;object-fit:cover;border:3px solid var(--primary-muted);box-shadow:var(--shadow-md)}
+.qui .team{display:flex;gap:2.5rem;justify-content:center;margin-top:2rem;flex-wrap:wrap}
+.qui .member img,.qui .member .ph{width:130px;height:130px;border-radius:50%;object-fit:cover;border:3px solid var(--primary-muted);box-shadow:var(--shadow-md);display:flex;align-items:center;justify-content:center;color:var(--primary-hover);font-size:.72rem;text-align:center;background:var(--primary-muted)}
+.qui .member b{display:block;margin-top:.8rem;font-size:1rem;color:var(--text)}
+.qui .member small{color:var(--text-muted);font-size:.84rem}
+.variant-label{text-align:center;font-size:.72rem;color:var(--primary-hover);font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:1rem}
+.variant-sep{border:none;border-top:1px solid var(--border);max-width:280px;margin:4rem auto}
+.cta-final{background:linear-gradient(135deg,#1F2937,#374151);color:#fff;text-align:center}
+.cta-final h2{color:#fff}
+.cta-final p{color:#D1D5DB;font-size:1.18rem;max-width:580px;margin:0 auto 2rem}
+.cta-final .wa-line{font-size:.95rem;margin:1.1rem auto 0}
+.cta-final .wa-line a{color:#FBBF24;font-weight:600;text-decoration:underline}
+.faq .wrap{max-width:760px}
+.q{background:var(--surface);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:1.4rem 1.6rem;margin-bottom:1rem;transition:border-color .2s;cursor:pointer}
+.q:hover{border-color:var(--primary)}
+.q-head{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.q-head h3{font-size:1.05rem}
+.chev{flex-shrink:0;color:var(--primary-hover);font-size:1.1rem;transition:transform .35s var(--ease)}
+.q.open .chev{transform:rotate(180deg)}
+.q-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s var(--ease)}
+.q.open .q-body{grid-template-rows:1fr}
+.q-body>div{overflow:hidden}
+.q-body p{font-size:.97rem;padding-top:.5rem}
+footer{background:#111827;color:#9CA3AF;padding:48px 0;text-align:center;font-size:.9rem}
+footer .logo{color:#fff;margin-bottom:.6rem}
+footer a{color:#D1D5DB}
+.flag{position:fixed;bottom:14px;left:14px;background:#0F766E;color:#fff;padding:.4rem .8rem;border-radius:var(--radius-full);font-size:.75rem;z-index:99;opacity:.9}
+.imgnote{text-align:center;font-size:.78rem;color:var(--text-muted);margin-top:1.5rem;font-style:italic}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.001s!important;animation-iteration-count:1!important;transition-duration:.001s!important}
+  .reveal,.stagger>*,.chaos>*{opacity:1!important;transform:none!important;filter:none!important}
+  .hero-h1 .line i{transform:none!important}
+  .hero .intro{opacity:1!important;transform:none!important}
+  .step .n{opacity:1!important;transform:none!important}
+  .card .sol{opacity:1!important;transform:none!important}
+  .orb{display:none}
+}
+</style>
+</head>
+<body>
+<nav id="nav"><div class="wrap nav-in">
+  <div class="logo">ULTRA<span>FACILE</span></div>
+  <div class="nav-links">
+    <a href="#offres">Tu te reconnais ?</a>
+    <a href="#process">Comment ça marche</a>
+    <a href="#preuve">Réalisations</a>
+    <a href="#faq">FAQ</a>
+    <a href="https://tidycal.com/ultrafacile/echange-gratuit" target="_blank" rel="noopener" class="nav-cta">Échange gratuit</a>
+  </div>
+</div></nav>
+
+<header class="hero">
+  <div class="orb orb1"></div><div class="orb orb2"></div>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="badge">Pour les artisans, commerçants et indépendants débordés</span>
+        <h1 class="hero-h1"><span class="line"><i>Pendant que tu bosses,</i></span><span class="line"><i>ton business rate des clients.</i></span></h1>
+        <div class="intro">
+          <p class="sub">Les appels manqués. Les messages sans réponse. Les avis ignorés. Je mets en place des solutions qui s'en chargent à ta place, pour que tu finisses ta journée tranquille et que plus aucun client ne passe à la trappe.</p>
+          <div class="hero-cta">
+            <a href="https://tidycal.com/ultrafacile/echange-gratuit" target="_blank" rel="noopener" class="btn magnetic">Échange gratuit</a>
+            <a href="#offres" class="btn btn-ghost">Voir des exemples concrets</a>
+          </div>
+          <p class="micro">Sans engagement. On regarde ton activité ensemble, gratuitement.</p>
+        </div>
+      </div>
+      <div class="mockup-wrap">
+      <div class="mockup">
+        <div class="mhead"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        <div class="row"><div class="ic">💬</div><div class="ln"><b>Client qui t'écrit</b><small>Réponse partie pendant ton chantier</small></div><span class="ok">✓</span></div>
+        <div class="row"><div class="ic">⭐</div><div class="ln"><b>Avis Google reçu</b><small>Réponse publiée dans ton ton</small></div><span class="ok">✓</span></div>
+        <div class="row"><div class="ic">📅</div><div class="ln"><b>Client à relancer</b><small>Relance programmée pour demain 9h</small></div><span class="ok">✓</span></div>
+        <div class="row"><div class="ic">📷</div><div class="ln"><b>Publié avec <span class="poste">Posté !</span></b><small>LinkedIn, Instagram, Facebook</small></div><span class="ok">✓</span></div>
+      </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="offres">
+  <div class="wrap">
+    <div class="eyebrow reveal"><h2>Tu te reconnais ?</h2></div>
+    <p class="lead reveal">Tu n'as pas un problème de motivation. Tu bosses déjà trop. Tu as juste trop de choses qui ne tiennent qu'à toi.</p>
+    <div class="grid chaos">
+      <div class="card"><p class="scene">Tu es occupé sur le terrain. Un client t'écrit. Tu réponds 4h plus tard. Il a déjà appelé quelqu'un d'autre.</p><p class="sol">→ Tes clients reçoivent une réponse tout de suite, même quand tu as les mains prises.</p></div>
+      <div class="card"><p class="scene">200 avis Google sur ton commerce. Tu ne réponds à aucun. Tes concurrents, si.</p><p class="sol">→ Chaque avis reçoit une réponse, dans ton ton, sans que tu y penses.</p></div>
+      <div class="card"><p class="scene">Tu crées tes produits à la main et tu les vends en story Instagram. Quelqu'un veut acheter à 23h. Pas de boutique, vente perdue.</p><p class="sol">→ Une boutique en ligne qui encaisse pendant que tu dors.</p></div>
+      <div class="card"><p class="scene">Tu jongles entre les messages, les rendez-vous et les relances sur trois applis différentes. Tu en oublies forcément.</p><p class="sol">→ Tout s'enchaîne tout seul. Tu ne cours plus après.</p></div>
+    </div>
+    <p class="closing reveal">Des métiers différents. La même galère : tout repose sur toi.<br>Une solution : enlever de tes épaules ce qui peut tourner sans toi.</p>
+  </div>
+</section>
+
+<section class="declic">
+  <div class="declic-glow"></div>
+  <div class="wrap reveal">
+    <h2>Le problème, ce n'est jamais toi.</h2>
+    <div class="lines">
+      <p>Tu réponds quand tu peux.</p>
+      <p>Tu relances quand tu y penses.</p>
+      <p>Tu postes quand tu as une minute.</p>
+      <p class="result">Résultat : rien n'est régulier, et des clients passent à la trappe. Pas parce que tu travailles mal. Parce que tout dépend de toi.</p>
+    </div>
+    <div class="projection">
+      <div class="signature">Imagine : tu finis ta journée, et tout est déjà géré.</div>
+      <p>Tes clients ont eu une réponse. Tes devis sont partis. Tes relances aussi.</p>
+      <p>Tu rentres chez toi. Vraiment chez toi.</p>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="wrap">
+    <div class="eyebrow reveal"><h2>Trois étapes. Zéro jargon.</h2></div>
+    <div class="steps stagger">
+      <div class="flux"></div>
+      <div class="step"><div class="n">1</div><h3>On se parle (gratuit)</h3><p>30 minutes. Tu me racontes ta journée. Je repère ce qui te coûte du temps et des clients. Tu repars avec des pistes claires, même si on ne travaille pas ensemble.</p></div>
+      <div class="step"><div class="n">2</div><h3>Le plan</h3><p>Je regarde comment tu fonctionnes et je te dis quoi régler en premier, et pourquoi. Pas de blabla, des priorités.</p><p class="note">Audit à 490€, déductible si tu lances quelque chose derrière.</p></div>
+      <div class="step"><div class="n">3</div><h3>Je m'occupe de tout</h3><p>Je mets en place, tu valides en un clic, ça tourne. Tu récupères du temps et tu arrêtes de rater des clients.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="preuve" id="preuve">
+  <div class="wrap">
+    <div class="eyebrow reveal"><h2>Ce que ça change, pour de vrai.</h2></div>
+    <p class="lead reveal">Le avant. Le après. Des situations réelles, pas des promesses.</p>
+    <div class="cases chaos">
+      <div class="case">
+        <div class="img" style="background-image:url('cases/case1.jpg')"></div>
+        <div class="body"><span class="sect">Artisan / services</span><h3>Des demandes qui dormaient dans une boîte mail</h3><p>Avant : les demandes de devis se perdaient dans la boîte mail, certaines oubliées pendant des jours. Aujourd'hui : chaque demande arrive au bon endroit, chaque client est relancé tout seul, et tout l'historique est sous la main. Sans payer un logiciel de plus.</p><span class="res">Plus aucune demande oubliée</span></div>
+      </div>
+      <div class="case">
+        <div class="img" style="background-image:url('cases/case2.jpg')"></div>
+        <div class="body"><span class="sect">Loisirs</span><h3>Une décharge papier qui finissait au fond d'un tiroir</h3><p>Avant : une fiche à remplir avant chaque client, puis des données perdues dans un carnet. Aujourd'hui : le client signe sur une tablette en 30 secondes, et chaque fiche se retrouve en un instant.</p><span class="res">Fini le carnet, tes données enfin exploitables</span></div>
+      </div>
+      <div class="case">
+        <div class="img" style="background-image:url('cases/case3.jpg')"></div>
+        <div class="body"><span class="sect">Peintre en bâtiment</span><h3>Une "deuxième journée" tous les soirs</h3><p>Avant : impossible de répondre en plein chantier, puis le soir une montagne de devis, de rappels et de réponses. Aujourd'hui : ses clients reçoivent une réponse tout de suite, et le soir elle sait exactement qui rappeler en premier pour gagner plus.</p><span class="res">Plus aucun client sans réponse, ses soirées récupérées</span></div>
+      </div>
+      <div class="case">
+        <div class="img" style="background-image:url('cases/case4.jpg')"></div>
+        <div class="body"><span class="sect">Circuit de karting</span><h3>1 publication par mois, quand il y pensait</h3><p>Avant : 1 à 2 posts par mois, sur un canal au hasard. Aujourd'hui, avec <span class="poste">Posté !</span>, il est présent tous les jours sur LinkedIn, Instagram et Facebook, à partir de ses vraies photos.</p><span class="res">+80 publications par mois, 3h gagnées par semaine</span></div>
+      </div>
+    </div>
+    <p class="imgnote">Quelques exemples de solutions déjà mises en place. Chaque solution est toujours adaptée et personnalisée à ton activité.</p>
+
+    <div class="testi reveal">
+      <blockquote>"Avant, je rappelais mes clients à 21h, épuisée. Maintenant, tout est géré quand je rentre. J'ai retrouvé mes soirées, et je n'ai plus l'impression de courir."</blockquote>
+      <div class="who"><img class="av" src="Emi.jpg" alt="Émi"><div><b>Émi</b><small>Peintre, Montpellier</small></div></div>
+    </div>
+
+    <div class="poste-band reveal">
+      <span class="badge">Produit maison</span>
+      <h3><span class="poste">Posté !</span> alimente tes réseaux sociaux, sans y passer de temps</h3>
+      <p>À partir de tes vraies photos, <span class="poste">Posté !</span> écrit tes publications, tu valides en un clic, ça publie tout seul.</p>
+      <br><a href="https://tidycal.com/ultrafacile/15-min-pour-voir-si-poste-est-fait-pour-toi" target="_blank" rel="noopener" class="btn magnetic">Découvrir Posté !</a>
+    </div>
+  </div>
+</section>
+
+<section class="qui">
+  <div class="wrap reveal">
+    <h2>Tu n'as pas besoin d'experts en tech. Tu as besoin d'une équipe qui te comprend.</h2>
+    <p>On est deux, et nos forces se complètent.</p>
+    <p>Moi, Sabine, je construis les systèmes qui enlèvent de tes épaules tout ce qui peut tourner sans toi. Anthony, lui, pense croissance, vente et stratégie : comment ton business attire plus de clients et gagne plus.</p>
+    <p>L'un sécurise ta machine, l'autre la fait grandir. Toi, tu fais ton métier. On parle business avant de parler technique, toujours, et on te dit franchement ce qui vaut le coup.</p>
+    <div class="team">
+      <div class="member"><img src="Sabine.jpg" alt="Sabine Caizergues"><b>Sabine Caizergues</b><small>Systèmes &amp; automatisation</small></div>
+      <div class="member"><img src="anthony.jpeg" alt="Anthony Jarosik"><b>Anthony Jarosik</b><small>Croissance, vente &amp; stratégie</small></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final" id="contact">
+  <div class="wrap reveal">
+    <h2>On regarde ensemble ce qui te fait perdre du temps ?</h2>
+    <p>30 minutes, gratuit, sans engagement. Tu repars avec au moins une idée à appliquer tout de suite, même si on ne bosse pas ensemble.</p>
+    <a href="https://tidycal.com/ultrafacile/echange-gratuit" target="_blank" rel="noopener" class="btn magnetic">Réserver mon échange gratuit</a>
+    <p class="wa-line">Pas prêt à réserver ? <a href="https://wa.me/33646561787?text=Salut%20Sabine,%20je%20t'écris%20depuis%20ultrafacile.fr.%20Mon%20activité%20:%20...%20et%20ce%20qui%20me%20prend%20le%20plus%20de%20temps,%20c'est%20..." target="_blank" rel="noopener">Écris-moi sur WhatsApp</a></p>
+    <p class="micro" style="color:#9CA3AF">Pas de carte bancaire. Pas de pression. Juste un échange utile.</p>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="eyebrow reveal"><h2>Questions fréquentes</h2></div>
+    <div class="reveal">
+    <div class="q open"><div class="q-head"><h3>Je ne suis pas à l'aise avec la technique. C'est pour moi ?</h3><span class="chev">⌄</span></div><div class="q-body"><div><p>Oui, c'est même fait pour ça. Tu n'installes rien, tu ne configures rien. Je m'occupe de tout, tu valides en un clic. Ton métier reste ton métier.</p></div></div></div>
+    <div class="q"><div class="q-head"><h3>Ça va sonner faux auprès de mes clients ?</h3><span class="chev">⌄</span></div><div class="q-body"><div><p>C'est le risque quand c'est mal fait. Je cale chaque réponse et chaque post sur ton ton, tes offres et tes vraies photos. Tu valides avant que ça parte. Personne ne voit la mécanique derrière.</p></div></div></div>
+    <div class="q"><div class="q-head"><h3>Combien ça coûte ?</h3><span class="chev">⌄</span></div><div class="q-body"><div><p>Ça dépend de ce dont tu as besoin. On en parle pendant l'échange gratuit, sans pression. Si tu veux un diagnostic complet avant de décider, l'audit est à 490€, déduit si tu lances quelque chose ensuite.</p></div></div></div>
+    <div class="q"><div class="q-head"><h3>Je veux juste un site, tu fais ça ?</h3><span class="chev">⌄</span></div><div class="q-body"><div><p>Oui. Mais je te fais un site qui t'amène des clients, pas une vitrine qui dort. Souvent, c'est le premier pas vers quelque chose de plus utile.</p></div></div></div>
+    <div class="q"><div class="q-head"><h3>Combien de temps avant que ça change quelque chose ?</h3><span class="chev">⌄</span></div><div class="q-body"><div><p>La plupart des choses sont en place en quelques semaines. On commence par ce qui te fait gagner le plus, tout de suite.</p></div></div></div>
+    <div class="q"><div class="q-head"><h3>Et si ce n'est pas pour mon activité ?</h3><span class="chev">⌄</span></div><div class="q-body"><div><p>On le voit AVANT que tu paies quoi que ce soit, pendant l'échange gratuit. Si je ne peux pas t'aider, je te le dis.</p></div></div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="logo">ULTRA<span style="color:var(--primary)">FACILE</span></div>
+    <p>J'enlève de tes épaules tout ce qui peut tourner sans toi.</p>
+    <p style="margin-top:1rem"><a href="https://tidycal.com/ultrafacile/echange-gratuit" target="_blank" rel="noopener">Échange gratuit</a> · <a href="https://tidycal.com/ultrafacile/15-min-pour-voir-si-poste-est-fait-pour-toi" target="_blank" rel="noopener">Posté !</a> ·<a href="https://wa.me/33646561787" target="_blank" rel="noopener">WhatsApp</a> · <a href="mailto:bonjour@ultrafacile.fr">bonjour@ultrafacile.fr</a></p>
+    <p style="margin-top:.6rem;font-size:.8rem">ULTRAFACILE, SASU · Mentions légales [À REMPLIR]</p>
+  </div>
+</footer>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>10));
+const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.reveal,.stagger,.chaos').forEach(el=>io.observe(el));
+requestAnimationFrame(()=>{const h=document.querySelector('.hero-h1');if(h)h.classList.add('in')});
+document.querySelectorAll('.q').forEach(q=>q.addEventListener('click',()=>q.classList.toggle('open')));
+let lenis=null;
+if(!reduce&&window.Lenis){
+  lenis=new Lenis({duration:1.1,easing:t=>Math.min(1,1.001-Math.pow(2,-10*t))});
+  (function raf(t){lenis.raf(t);requestAnimationFrame(raf)})();
+}
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
+  const id=a.getAttribute('href');if(id.length<2)return;
+  const t=document.querySelector(id);if(!t)return;e.preventDefault();
+  if(lenis)lenis.scrollTo(t,{offset:-70});else t.scrollIntoView({behavior:'smooth'});
+}));
+if(!reduce){
+  document.querySelectorAll('.magnetic').forEach(b=>{
+    b.addEventListener('mousemove',e=>{const r=b.getBoundingClientRect();b.style.translate=`${(e.clientX-r.left-r.width/2)*.3}px ${(e.clientY-r.top-r.height/2)*.4}px`});
+    b.addEventListener('mouseleave',()=>b.style.translate='0 0');
+  });
+  const orb1=document.querySelector('.orb1'),orb2=document.querySelector('.orb2'),mock=document.querySelector('.mockup-wrap');
+  let mx=0,my=0,cx=0,cy=0;
+  addEventListener('mousemove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5});
+  (function loop(){cx+=(mx-cx)*.06;cy+=(my-cy)*.06;
+    if(orb1)orb1.style.translate=`${cx*40}px ${cy*30}px`;
+    if(orb2)orb2.style.translate=`${cx*-50}px ${cy*-35}px`;
+    if(mock)mock.style.transform=`perspective(900px) rotateY(${cx*6}deg) rotateX(${cy*-6}deg)`;
+    requestAnimationFrame(loop)})();
+  const sec=document.querySelector('.declic'),glow=document.querySelector('.declic-glow');
+  if(sec&&glow){let gx=0,gy=0,tx=0,ty=0;
+    sec.addEventListener('mousemove',e=>{const r=sec.getBoundingClientRect();tx=e.clientX-r.left;ty=e.clientY-r.top;glow.style.opacity='1'});
+    sec.addEventListener('mouseleave',()=>glow.style.opacity='0');
+    (function g(){gx+=(tx-gx)*.08;gy+=(ty-gy)*.08;glow.style.left=gx+'px';glow.style.top=gy+'px';requestAnimationFrame(g)})();
+  }
+}
+</script>
+</body>
+</html>
